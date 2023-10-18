@@ -1,8 +1,7 @@
-import express, {response} from "express";
+import express from "express";
 import { PORT, uri } from "./config.js";
-import mongoose from "mongoose";
-import {Book} from "./models/bookModel.js";
-import bookRoutes from "./routes/bookRoutes.js";
+import mongoose, {get} from "mongoose";
+import {Book} from '/models/bookModels.js';
 import cors from 'cors';
 
 
@@ -10,16 +9,6 @@ const app = express();
 app.use(express.json());
 //default use of cors
 app.use(cors());
-
-//custom use of cors
-/*app.use(cors(
-    {
-        origin: 'http://localhost:5555/',
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['content-type'],
-    }
-));
-*/
 
 app.get('/', (request, response) => {
     try {
@@ -29,16 +18,19 @@ app.get('/', (request, response) => {
     }
 });
 
-app.post("/bebe", async (req, res) => {
-    let {name} = req.body;
-    console.log(name);
+app.get('/', async (req, res)  => {
+    try {
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
 })
 
-app.get("/bebe", async(req, res) =>{
-    res.send("hello bebe");
+app.get("/books", async (req, res) => {
+    const books = await Book.find({})
+    return res.status(200).json(books);
 })
 
-app.use('/books', bookRoutes)
 
 mongoose
     .connect(uri)
