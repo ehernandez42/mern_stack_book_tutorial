@@ -1,15 +1,15 @@
 //backend for book store app
 const express = require('express');
 const mongoose = require('mongoose');
+const router = require("../backend/routes/book-route");
 
 
 //mongodb+srv://admin:vuEY6qjU2kdTMmaa@cluster0.cbyw4mp.mongodb.net/?retryWrites=true&w=majority
 
 const app = express();
 
-app.use('/', (req, res, next) => {
-    res.send("connected bruh lol");
-})
+app.use('/books',router);
+
 
 mongoose
     .connect("mongodb+srv://admin:vuEY6qjU2kdTMmaa@cluster0.cbyw4mp.mongodb.net/?retryWrites=true&w=majority"
