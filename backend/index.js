@@ -8,7 +8,9 @@ const router = require("../backend/routes/book-route");
 
 const app = express();
 
+app.use(express.json());
 app.use('/books',router);
+
 
 
 mongoose
