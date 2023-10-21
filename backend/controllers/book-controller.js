@@ -1,6 +1,7 @@
 const Book = require('../model/Book');
 
-//stopped at 44:10
+//stopped at 49:26
+//https://www.youtube.com/watch?v=5Y5QKfxTErU&t=2658s
 const getAllBooks = async (req, res, next) => {
     //provides the route for all the books shown
     let books;
@@ -57,6 +58,29 @@ const getById = async (req, res, next) => {
     return res.status(200).json({ book });
 }
 
+const updateBook = async (req, res, next) => {
+    const id = req.params.id;
+    const { name, author, description, price, available } = req.body;
+    let book;
+    try{
+        book = await Book.findByIdAndUpdate(id, {
+            name,
+            author,
+            description,
+            price,
+            available
+        });
+        book = await book.save();
+    } catch (e) {
+        console.log(e);
+    }
+    if (!book) {
+        return res.status(404).json({message: "Unable to update by this ID"});
+    }
+    return res.status(200).json({ book });
+}
+
 exports.getAllBooks = getAllBooks;
 exports.addBook = addBook;
 exports.getById = getById;
+exports.updateBook = updateBook;
