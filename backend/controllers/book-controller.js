@@ -1,6 +1,6 @@
 const Book = require('../model/Book');
 
-//stopped at 54:00
+//stopped here! Good job making it through the backend!
 //https://www.youtube.com/watch?v=5Y5QKfxTErU&t=2658s
 const getAllBooks = async (req, res, next) => {
     //provides the route for all the books shown
@@ -19,7 +19,7 @@ const getAllBooks = async (req, res, next) => {
 }
 
 const addBook = async (req, res, next) => {
-   const { name, author, description, price, available} = req.body;
+   const { name, author, description, price, available, image} = req.body;
     let book;
 
     try {
@@ -28,7 +28,8 @@ const addBook = async (req, res, next) => {
             author,
             description,
             price,
-            available
+            available,
+            image
         });
 
         await book.save();
@@ -60,7 +61,7 @@ const getById = async (req, res, next) => {
 
 const updateBook = async (req, res, next) => {
     const id = req.params.id;
-    const { name, author, description, price, available } = req.body;
+    const { name, author, description, price, available, image } = req.body;
     let book;
     try{
         book = await Book.findByIdAndUpdate(id, {
@@ -68,7 +69,8 @@ const updateBook = async (req, res, next) => {
             author,
             description,
             price,
-            available
+            available,
+            image
         });
         book = await book.save();
     } catch (e) {
