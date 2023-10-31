@@ -1,12 +1,28 @@
-import React from 'react';
-import {AppBar, Typography} from "@mui/material";
+import React, {useState} from 'react';
+import {AppBar, Tab, Tabs, Toolbar, Typography} from "@mui/material";
+import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
 
+const bookStoreTitle = " Eleazar's Book Store";
 const Header = () => {
-    return <div>
-        <AppBar position='sticky'>
-            <Typography>Books</Typography>
+    const [floater, setFloater] = useState();
+    return (
+    <div>
+        <AppBar position='Sticky'>
+            <Toolbar>
+            <Typography>
+                <div>
+                    <CollectionsBookmarkRoundedIcon />
+                {bookStoreTitle}
+                </div>
+            </Typography>
+                <Tabs textColor='inherit' indicatorColor='secondary' value={floater} onChange={(e, val) => setFloater(val)}>
+                    <Tab label='Add Book' />
+                    <Tab label='About us' />
+                </Tabs>
+            </Toolbar>
         </AppBar>
-    </div>;
+    </div>
+    );
 }
 
 export default Header;

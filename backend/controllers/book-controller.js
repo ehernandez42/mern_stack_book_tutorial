@@ -1,8 +1,6 @@
 const Book = require('../model/Book');
 
-//stopped here! Good job making it through the backend!
-//https://www.youtube.com/watch?v=5Y5QKfxTErU&t=2658s
-const getAllBooks = async (req, res, next) => {
+const getAllBooks = async (req, res) => {
     //provides the route for all the books shown
     let books;
     try {
@@ -18,7 +16,7 @@ const getAllBooks = async (req, res, next) => {
     return res.status(200).json({ books });
 }
 
-const addBook = async (req, res, next) => {
+const addBook = async (req, res) => {
    const { name, author, description, price, available, image} = req.body;
     let book;
 
@@ -44,7 +42,7 @@ const addBook = async (req, res, next) => {
     return res.status(200).json({ book })
 }
 
-const getById = async (req, res, next) => {
+const getById = async (req, res) => {
     let book;
     const id = req.params.id;
     try{
@@ -59,7 +57,7 @@ const getById = async (req, res, next) => {
     return res.status(200).json({ book });
 }
 
-const updateBook = async (req, res, next) => {
+const updateBook = async (req, res) => {
     const id = req.params.id;
     const { name, author, description, price, available, image } = req.body;
     let book;
@@ -82,7 +80,7 @@ const updateBook = async (req, res, next) => {
     return res.status(200).json({ book });
 }
 
-const deleteBook = async (req, res, next) => {
+const deleteBook = async (req, res) => {
     const id = req.params.id;
     let book;
     try {
