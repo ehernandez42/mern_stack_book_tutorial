@@ -2,13 +2,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = require("../backend/routes/book-route");
-
+const cors = require('cors');
 
 //mongodb+srv://admin:vuEY6qjU2kdTMmaa@cluster0.cbyw4mp.mongodb.net/?retryWrites=true&w=majority
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use('/books',router);
 
 
@@ -18,7 +19,7 @@ mongoose
 )
     .then (() => console.log("Connected to DB"))
     .then(() => {
-        app.listen(5000);
+        app.listen(5001);
     })
     .catch((err)=> console.log(err));
 

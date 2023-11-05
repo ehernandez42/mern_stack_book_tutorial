@@ -6,12 +6,12 @@ import {NavLink} from "react-router-dom";
 //stopped here!
 const bookStoreTitle = " Eleazar's Book Store";
 const Header = () => {
-    const [floater, setFloater] = useState();
+    const [floater, setFloater] = useState(0);
     return (
     <div>
-        <AppBar sx={{backgroundColor: "#8f9779"}} position='Sticky'>
+        <AppBar sx={{backgroundColor: "#8f9779"}} position='sticky'>
             <Toolbar>
-            <Typography>
+            <Typography component={'span'} variant={'body2'} >
                 <div>
                     <CollectionsBookmarkRoundedIcon />
                 {bookStoreTitle}

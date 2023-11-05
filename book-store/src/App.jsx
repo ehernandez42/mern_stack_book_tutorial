@@ -8,8 +8,6 @@ import { Route, Routes } from "react-router-dom";
 
 
 function App() {
-//https://www.youtube.com/watch?v=5Y5QKfxTErU&t=2658s
-  //1:16:45
   return (
       <React.Fragment>
         <header>
