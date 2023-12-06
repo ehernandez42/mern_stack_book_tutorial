@@ -4,7 +4,7 @@ import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookm
 import {NavLink} from "react-router-dom";
 
 //stopped here!
-const bookStoreTitle = " Eleazar's Book Store";
+const bookStoreTitle = " Eleazar's Book App";
 const Header = () => {
     const [floater, setFloater] = useState(0);
     return (
@@ -22,6 +22,7 @@ const Header = () => {
                 }} value={floater} onChange={(e, val) => setFloater(val)}>
                     <Tab LinkComponent={NavLink} to="/books" label='Books' />
                     <Tab LinkComponent={NavLink} to="/add-book" label='Add Book' />
+                    <Tab LinkComponent={NavLink} to="/books/:id" label='Update Book' />
                     <Tab LinkComponent={NavLink} to="/about-me" label='About us' />
                 </Tabs>
             </Toolbar>

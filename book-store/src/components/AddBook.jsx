@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
-import {Button, FormControlLabel, FormLabel, TextField} from "@mui/material";
+import {Button, Checkbox, FormControlLabel, FormLabel, TextField} from "@mui/material";
 import { Box } from "@mui/system";
-import {CheckBox} from "@mui/icons-material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
-//double checking the check box feature. It's being weird and not clicking
+
 const AddBook = () => {
+    const routerNav = useNavigate();
     const [submit, setSubmit] = useState({
         name: "",
         author: "",
         description: "",
         price: "",
-        available: false,
         image: "",
     });
     const [checked, setChecked] = useState(false);
@@ -19,12 +20,23 @@ const AddBook = () => {
         setSubmit((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
-        }))
+        }));
 
+    }
+    const sendRequest = async () => {
+       await axios
+           .post("http://localhost:5001/books", {
+            name: String(submit.name),
+            author: String(submit.author),
+            description: String(submit.description),
+            price: Number(submit.price),
+            image: String(submit.image),
+            available: Boolean(checked)
+        }).then(res => res.data)
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(submit);
+        sendRequest().then(()=> routerNav('/books'));
     }
     return (
         <Box display="flex" flexDirection="column"
@@ -39,11 +51,9 @@ const AddBook = () => {
                 <TextField value={submit.description} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="description" autoComplete="off" />
                 <FormLabel>Price</FormLabel>
                 <TextField value={submit.price} onChange={handleChange} type={"number"} margin="normal" fullWidth variant="outlined" name="price" autoComplete="off" />
-                <FormLabel>Available</FormLabel>
-                <TextField type={"number"} margin="normal" fullWidth variant="outlined" name="available" autoComplete="off" />
                 <FormLabel>Image</FormLabel>
-                <TextField value={submit.image} onChange={handleChange} type={"number"} margin="normal" fullWidth variant="outlined" name="image" autoComplete="off" />
-                <FormControlLabel control={<CheckBox checked={checked} onChange={()=> setChecked(!checked)} />} label="Available" />
+                <TextField value={submit.image} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="image" autoComplete="off" />
+                <FormControlLabel control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} />} label={"Available"} />
                 <Button variant="contained" type="submit">Add Book</Button>
             </form>
             </Box>
