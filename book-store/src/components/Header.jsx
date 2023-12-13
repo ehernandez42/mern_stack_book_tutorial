@@ -22,7 +22,6 @@ const Header = () => {
                 }} value={floater} onChange={(e, val) => setFloater(val)}>
                     <Tab LinkComponent={NavLink} to="/books" label='Books' />
                     <Tab LinkComponent={NavLink} to="/add-book" label='Add Book' />
-                    <Tab LinkComponent={NavLink} to="/books/:id" label='Update Book' />
                     <Tab LinkComponent={NavLink} to="/about-me" label='About us' />
                 </Tabs>
             </Toolbar>

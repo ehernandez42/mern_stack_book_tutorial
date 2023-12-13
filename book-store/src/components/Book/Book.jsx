@@ -7,16 +7,14 @@ import axios from "axios";
 const Book = (props) => {
     const history = useNavigate();
     const {_id, name, author, description, price, image} = props.book;
-   //tutorial - figuring out the delete button and the update button are the last ones I think??
-    //SSL protocol error. Might need to do the whole thing where you make localhost have a SSL cert
 
-    //problem is that 1. it doesn't automatically refresh to the books after deleting
     const deleteHandler = async() => {
         await axios
             .delete(`http://localhost:5001/books/${_id}`)
             .then((res) => res.data)
             .then(() => history("/"))
-            .then(() => history("/books"));
+            .then(() => history("/books"))
+            .then(window.location.reload())
     }
     return(
         <div className={'card'}>
