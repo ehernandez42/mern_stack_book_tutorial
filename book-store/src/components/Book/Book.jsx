@@ -2,12 +2,13 @@ import React from 'react';
 import {Button} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import './Book.css'
 
 
+//add a functionality that has a box pop out and ask if you are sure you want to delete?
 const Book = (props) => {
     const history = useNavigate();
     const {_id, name, author, description, price, image} = props.book;
-
     const deleteHandler = async() => {
         await axios
             .delete(`http://localhost:5001/books/${_id}`)

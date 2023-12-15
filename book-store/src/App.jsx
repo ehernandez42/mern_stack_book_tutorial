@@ -6,7 +6,7 @@ import About from "./components/About.jsx";
 import Home from "./components/Home.jsx";
 import BookDetail from "./components/Book/BookDetail.jsx";
 import { Route, Routes } from "react-router-dom";
-
+import './components/App.css';
 
 function App() {
   return (

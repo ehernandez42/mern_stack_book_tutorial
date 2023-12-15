@@ -7,17 +7,16 @@ ul {
 }
 
 .card {
-    padding: 20px;
+    padding: 30px;
     padding-bottom: 35px;
     width: 100%;
     height: 100%;
-    box-shadow: 5px 5px 10px #c6e2ff;
+    box-shadow: 5px 5px 100px #c6e2ff;
     align-items: center;
     text-align: center;
 }
 
 .card > Button {
-    background: #c6e2ff;
     border-radius: 10px;
     margin: 0 0 0 10px;
     align-items: center;
@@ -35,3 +34,14 @@ li {
     max-height: 400px;
 }
 
+/*css for the emptyTag component*/
+.emptyTag {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.bookItem {
+    list-style-type: none;
+    font-family: "Roboto Thin", "sans-serif";
+    font-size: 18px;
+}

@@ -14,7 +14,7 @@ const Header = () => {
             <Typography component={'span'} variant={'body2'} >
                 <div>
                     <CollectionsBookmarkRoundedIcon />
-                {bookStoreTitle}
+                <Tab LinkComponent={NavLink} to="/" label={bookStoreTitle} />
                 </div>
             </Typography>
                 <Tabs sx={{ml: 'auto'}} textColor='inherit' TabIndicatorProps={{
