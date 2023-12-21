@@ -3,8 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = require("../backend/routes/book-route");
 const cors = require('cors');
+const db_url = require('dotenv')
 
-//mongodb+srv://admin:vuEY6qjU2kdTMmaa@cluster0.cbyw4mp.mongodb.net/?retryWrites=true&w=majority
+db_url.config()
 
 const app = express();
 
@@ -15,17 +16,10 @@ app.use('/books',router);
 
 
 mongoose
-    .connect("mongodb+srv://admin:vuEY6qjU2kdTMmaa@cluster0.cbyw4mp.mongodb.net/?retryWrites=true&w=majority"
-)
+    .connect(process.env.MONGODB_URL)
     .then (() => console.log("Connected to DB"))
     .then(() => {
         app.listen(5001);
     })
     .catch((err)=> console.log(err));
 
-
-
-
-
-//database password:
-//vuEY6qjU2kdTMmaa
